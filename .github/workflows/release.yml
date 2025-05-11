@@ -1,0 +1,44 @@
+name: Build and Release Go Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger the workflow on version tag pushes, e.g. v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [linux, windows, darwin]
+        goarch: [amd64, arm64]
+        exclude:
+          - os: darwin
+            goarch: amd64  # Exclude building for Intel Macs
+          - os: windows 
+            goarch: arm64 # Exclude building for arm64 Windows
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23.0'
+
+      - name: Install dependencies
+        run: |
+          go mod tidy
+          go mod vendor
+
+      - name: Build for ${{ matrix.os }}-${{ matrix.goarch }}
+        run: |
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.goarch }} go build -o cortexpoint.${{ matrix.os }}.${{ matrix.goarch }} main.go
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: cortexpoint.*
