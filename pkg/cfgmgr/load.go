@@ -55,6 +55,7 @@ func LoadToml(configPath string) (Configuration, error) {
 				Image:       "ollama/ollama",
 				Dir:         "/root/.ollama",
 			},
+			nil,
 		}, nil
 	}
 	tomlCfgLoader := TomlFileConfigLoader{

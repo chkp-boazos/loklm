@@ -93,6 +93,18 @@ var setupCmd = &cobra.Command{
 			),
 		}
 
+		if cfg.VectorDB != nil {
+			setupTasks = append(
+				setupTasks,
+				tasks.WithResults(
+					fmt.Sprintf("Image %s was pulled successfully", cfg.VectorDB.Image),
+					fmt.Sprintf("Image %s was not pulled successfully", cfg.VectorDB.Image),
+				)(
+					pullImageTask(cfg.VectorDB.Image, client),
+				),
+			)
+		}
+
 		errorCode := 0
 		for _, setupTask := range setupTasks {
 			err := setupTask()

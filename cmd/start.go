@@ -89,6 +89,13 @@ var startCmd = &cobra.Command{
 			wrapTask(startContainerTask(cfg.Llm, cfg.General, client, ctx), cfg.Llm.Name),
 		}
 
+		if cfg.VectorDB != nil {
+			startTasks = append(
+				startTasks,
+				wrapTask(startContainerTask(*cfg.VectorDB, cfg.General, client, ctx), cfg.VectorDB.Name),
+			)
+		}
+
 		errorCode := 0
 		for _, startTask := range startTasks {
 			if err := startTask(); err != nil {

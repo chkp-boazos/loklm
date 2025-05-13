@@ -89,6 +89,20 @@ var cleanCmd = &cobra.Command{
 				),
 			),
 		}
+
+		if cfg.VectorDB != nil {
+			cleanTasks = append(
+				[]tasks.Task{
+					tasks.WithResults(fmt.Sprintf("Container %s was removed", cfg.VectorDB.Name), fmt.Sprintf("Could not remove container %s", cfg.VectorDB.Name))(
+						tasks.WithSpinner(fmt.Sprintf(":sparkles: Removing container %s", cfg.VectorDB.Name))(
+							CleanContainer(cfg.VectorDB.Name, client, ctx),
+						),
+					),
+				},
+				cleanTasks...,
+			)
+		}
+
 		if cleanImages {
 			cleanTasks = append(cleanTasks,
 				tasks.WithResults(fmt.Sprintf("Image %s was removed", cfg.Notebooks.Image), fmt.Sprintf("Could not remove image %s", cfg.Llm.Image))(
@@ -103,6 +117,17 @@ var cleanCmd = &cobra.Command{
 					),
 				),
 			)
+
+			if cfg.VectorDB != nil {
+				cleanTasks = append(
+					cleanTasks,
+					tasks.WithResults(fmt.Sprintf("Image %s was removed", cfg.VectorDB.Image), fmt.Sprintf("Could not remove image %s", cfg.VectorDB.Image))(
+						tasks.WithSpinner(fmt.Sprintf(":cookie: Removing image %s", cfg.VectorDB.Image))(
+							CleanImage(cfg.VectorDB.Image, client, ctx),
+						),
+					),
+				)
+			}
 		}
 
 		if !keepStateDir {

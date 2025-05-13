@@ -6,6 +6,7 @@ type Configuration struct {
 	General   General
 	Notebooks ExposedContainer
 	Llm       ExposedContainer
+	VectorDB  *ExposedContainer
 }
 
 type General struct {
