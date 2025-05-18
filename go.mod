@@ -1,4 +1,4 @@
-module github.com/boaz0/cortexpoint
+module github.com/boazos/loklm
 
 go 1.23.0
 

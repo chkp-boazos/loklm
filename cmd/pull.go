@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/boaz0/cortexpoint/pkg/cfgmgr"
-	dockerclient "github.com/boaz0/cortexpoint/pkg/dockerClient"
+	"github.com/boazos/loklm/pkg/cfgmgr"
+	dockerclient "github.com/boazos/loklm/pkg/dockerClient"
 	"github.com/docker/docker/api/types/container"
 	"github.com/spf13/cobra"
 )

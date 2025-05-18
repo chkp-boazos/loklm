@@ -35,10 +35,10 @@ jobs:
 
       - name: Build for ${{ matrix.os }}-${{ matrix.goarch }}
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.goarch }} go build -o cortexpoint.${{ matrix.os }}.${{ matrix.goarch }} main.go
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.goarch }} go build -o loklm.${{ matrix.os }}.${{ matrix.goarch }} main.go
 
       - name: Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
-          files: cortexpoint.*
+          files: loklm.*

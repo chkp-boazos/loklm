@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/boaz0/cortexpoint/pkg/cfgmgr"
-	dockerclient "github.com/boaz0/cortexpoint/pkg/dockerClient"
-	"github.com/boaz0/cortexpoint/pkg/tasks"
+	"github.com/boazos/loklm/pkg/cfgmgr"
+	dockerclient "github.com/boazos/loklm/pkg/dockerClient"
+	"github.com/boazos/loklm/pkg/tasks"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/client"

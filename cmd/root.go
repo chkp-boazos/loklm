@@ -8,7 +8,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "cortexpoint",
+	Use:   "loklm",
 	Short: "Manage agent crafter environment",
 	Long: `
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-		Cortex CLI is a developer-focused command-line interface designed to streamline the
+		LokLM CLI is a developer-focused command-line interface designed to streamline the
 		setup, execution, and management of a fully local AI development environment.`,
 }
 

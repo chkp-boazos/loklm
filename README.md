@@ -1,4 +1,4 @@
-# CortexPoint
+# LokLM 
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣆⠘⠿⠟⢻⣿⣿⡇⢐⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
@@ -16,9 +16,9 @@
 
 ---
 
-### Cortex CLI
+### LokLM CLI
 
-Cortex CLI is a developer-focused command-line interface designed to streamline the setup, execution, and management of a fully local AI development environment.
+LokLM (compact, brandable: Local + LLM) CLI is a developer-focused command-line interface designed to streamline the setup, execution, and management of a fully local AI development environment.
 
 ---
 
@@ -49,10 +49,10 @@ Install Docker and download the binary file.
 Run the following command:
 
 ```shell
-cortexpoint setup
+loklm setup
 ```
 
-This will pull the Ollama and Jupyter container images, set up the CortexPoint network on Docker, and establish a directory to store your notebooks and LLM models.
+This will pull the Ollama and Jupyter container images, set up the LokLM network on Docker, and establish a directory to store your notebooks and LLM models.
 
 ---
 
@@ -61,7 +61,7 @@ This will pull the Ollama and Jupyter container images, set up the CortexPoint n
 The next step is to run the containers: Ollama for running LLM models and Jupyter for writing Python code and testing agents.
 
 ```shell
-cortexpoint start
+loklm start
 ```
 
 ---
@@ -71,7 +71,7 @@ cortexpoint start
 Now that we have our environment set up and running, it's time to pull a model and start writing our agent. I usually use `ollama4`, but if you have less powerful hardware, you can use `smollm`, which should run on most computers.
 
 ```shell
-cortexpoint pull smollm
+loklm pull smollm
 ```
 
 ---
@@ -83,7 +83,7 @@ If it's your first time running Jupyter, you’ll be asked to provide a token.
 You can find the token by running:
 
 ```shell
-cortexpoint jupyterToken
+loklm jupyterToken
 ```
 
 Then copy and paste the token.

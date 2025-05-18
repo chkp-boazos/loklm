@@ -1,10 +1,9 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2025 BOAZ OSTROFF SHUSTER <boazos@checkpoint.com>
 */
 package main
 
-import "github.com/boaz0/cortexpoint/cmd"
+import "github.com/boazos/loklm/cmd"
 
 func main() {
 	cmd.Execute()
