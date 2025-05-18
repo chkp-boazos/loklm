@@ -36,6 +36,8 @@ func LoadToml(configPath string) (Configuration, error) {
 		}
 		return Configuration{
 			General{
+				Version:  "v1",
+				Name:     "",
 				Network:  "cortex-net",
 				StateDir: stateDir,
 			},

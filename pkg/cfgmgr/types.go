@@ -10,6 +10,8 @@ type Configuration struct {
 }
 
 type General struct {
+	Version  string
+	Name     string
 	Network  string
 	StateDir string
 }

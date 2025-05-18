@@ -43,6 +43,18 @@ func createDirectoryTask(name string, dirCreator fs.DirCreator) tasks.Task {
 	}
 }
 
+func CreateSetupTask(spaceName string, name string, kind string, client *client.Client) tasks.Task {
+	entityName := utils.GenerateNameWithSpaceName(spaceName, name, ",")
+	return tasks.WithResults(
+		fmt.Sprintf("%s %s was successfully created", utils.Capital(kind), entityName),
+		fmt.Sprintf("%s %s was not created successfully", utils.Capital(kind), entityName),
+	)(
+		tasks.WithSpinner(":rocket: Creating network")(
+			createNetworkTask(entityName, client),
+		),
+	)
+}
+
 var setupCmd = &cobra.Command{
 	Use:   "setup",
 	Short: "Set resources to run the local environment",
@@ -60,15 +72,7 @@ var setupCmd = &cobra.Command{
 		}
 
 		setupTasks := []tasks.Task{
-			tasks.WithResults(
-				fmt.Sprintf("Network %s was successfully created", cfg.General.Network),
-				fmt.Sprintf("Network %s was not created successfully", cfg.General.Network),
-			)(
-				tasks.WithSpinner(":rocket: Creating network")(
-					createNetworkTask(cfg.General.Network, client),
-				),
-			),
-
+			CreateSetupTask(cfg.General.Name, cfg.General.Network, "network", client),
 			tasks.WithResults(
 				fmt.Sprintf("State directory %s was created successfully", cfg.General.StateDir),
 				fmt.Sprintf("State directory %s was not created successfully", cfg.General.StateDir),
@@ -78,30 +82,14 @@ var setupCmd = &cobra.Command{
 				),
 			),
 
-			tasks.WithResults(
-				fmt.Sprintf("Image %s was pulled successfully", cfg.Notebooks.Image),
-				fmt.Sprintf("Image %s was not pulled successfully", cfg.Notebooks.Image),
-			)(
-				pullImageTask(cfg.Notebooks.Image, client),
-			),
-
-			tasks.WithResults(
-				fmt.Sprintf("Image %s was pulled successfully", cfg.Llm.Image),
-				fmt.Sprintf("Image %s was not pulled successfully", cfg.Llm.Image),
-			)(
-				pullImageTask(cfg.Llm.Image, client),
-			),
+			CreateSetupTask(cfg.General.Name, cfg.Notebooks.Image, "image", client),
+			CreateSetupTask(cfg.General.Name, cfg.Llm.Image, "image", client),
 		}
 
 		if cfg.VectorDB != nil {
 			setupTasks = append(
 				setupTasks,
-				tasks.WithResults(
-					fmt.Sprintf("Image %s was pulled successfully", cfg.VectorDB.Image),
-					fmt.Sprintf("Image %s was not pulled successfully", cfg.VectorDB.Image),
-				)(
-					pullImageTask(cfg.VectorDB.Image, client),
-				),
+				CreateSetupTask(cfg.General.Name, cfg.VectorDB.Image, "image", client),
 			)
 		}
 
