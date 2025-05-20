@@ -150,6 +150,6 @@ var cleanCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(cleanCmd)
-	rootCmd.PersistentFlags().BoolVar(&keepStateDir, "keep-state", false, "Do not clean notebooks and models")
-	rootCmd.PersistentFlags().BoolVar(&cleanImages, "delete-images", false, "Clean Docker images")
+	cleanCmd.PersistentFlags().BoolVar(&keepStateDir, "keep-state", false, "Do not clean notebooks and models")
+	cleanCmd.PersistentFlags().BoolVar(&cleanImages, "delete-images", false, "Clean Docker images")
 }
