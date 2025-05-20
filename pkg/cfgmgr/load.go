@@ -1,12 +1,15 @@
 package cfgmgr
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
 
 	"github.com/BurntSushi/toml"
 )
+
+const DIRNAME = "loklm"
 
 type ConfigLoader interface {
 	configLoad() (Configuration, error)
@@ -25,13 +28,13 @@ func (fcl TomlFileConfigLoader) configLoad() (Configuration, error) {
 
 func LoadToml(configPath string) (Configuration, error) {
 	if configPath == "" {
-		stateDir := "/tmp/cortex.state"
+		stateDir := fmt.Sprintf("/tmp/%s", DIRNAME)
 		if runtime.GOOS == "windows" {
 			programData := os.Getenv("ProgramData")
 			if programData == "" {
 				programData = "C:\\ProgramData"
 			}
-			stateDir = filepath.Join(programData, "cortex.state")
+			stateDir = filepath.Join(programData, DIRNAME)
 
 		}
 		return Configuration{
