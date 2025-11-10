@@ -7,7 +7,7 @@ toolchain go1.23.9
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/briandowns/spinner v1.23.2
-	github.com/docker/docker v28.5.1+incompatible
+	github.com/docker/docker v28.5.2+incompatible
 	github.com/docker/go-connections v0.6.0
 	github.com/fatih/color v1.18.0
 	github.com/kyokomi/emoji v2.2.4+incompatible
