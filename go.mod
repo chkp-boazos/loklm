@@ -12,7 +12,7 @@ require (
 	github.com/fatih/color v1.18.0
 	github.com/kyokomi/emoji v2.2.4+incompatible
 	github.com/pcj/mobyprogress v0.0.0-20221114203314-669a7801d484
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 )
 
 require (
